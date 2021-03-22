@@ -1,0 +1,39 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Ignite@2021
+      POSTGRES_DB: rockelivery_dev
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/data/postgres 
+    networks:
+      - postgres
+    restart: unless-stopped
+      
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ignite@rocketseat.com.br
+      PGADMIN_DEFAULT_PASSWORD: Ignite@2021
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks: 
+  postgres:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:
