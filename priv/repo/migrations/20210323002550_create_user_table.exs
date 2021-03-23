@@ -5,7 +5,7 @@ defmodule Rockelivery.Repo.Migrations.CreateUserTable do
 
     create table :users do
       add :address, :string
-      add :age, :string
+      add :age, :integer
       add :cep, :string
       add :cpf, :string
       add :email, :string
