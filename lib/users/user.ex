@@ -4,6 +4,7 @@ defmodule Rockelivery.Users.User do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:age, :address, :cep, :cpf, :email, :password, :name]
+  @derive {Jason.Encoder, only: [:id, :cep, :cpf, :email, :name]}
 
   schema "users" do
     field :age, :integer
